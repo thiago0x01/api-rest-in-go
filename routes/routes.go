@@ -12,11 +12,11 @@ func HandleRequest() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", controllers.Home)
 
-	r.HandleFunc("/persons", controllers.ReadPersons).Methods("Get")
-	r.HandleFunc("/persons/{id}", controllers.ReadPersonById).Methods("Get")
-	r.HandleFunc("/persons", controllers.CreatePerson).Methods("Post")
-	r.HandleFunc("/persons/{id}", controllers.DeletePerson).Methods("Delete")
-	r.HandleFunc("/persons/{id}", controllers.UpdatePerson).Methods("Put")
+	r.HandleFunc("/personalities", controllers.ReadPersonalities).Methods("Get")
+	r.HandleFunc("/personalities/{id}", controllers.ReadPersonalityById).Methods("Get")
+	r.HandleFunc("/personalities", controllers.CreatePersonality).Methods("Post")
+	r.HandleFunc("/personalities/{id}", controllers.DeletePersonality).Methods("Delete")
+	r.HandleFunc("/personalities/{id}", controllers.UpdatePersonality).Methods("Put")
 
 	log.Fatal(http.ListenAndServe(":5000", r))
 }

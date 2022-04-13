@@ -1,9 +1,9 @@
 package models
 
-type Person struct {
+type Personality struct {
 	Id       int    `json:"id"`
 	Nome     string `json:"nome"`
 	Historia string `json:"historia"`
 }
 
-var Persons []Person
+var Personalities []Personality

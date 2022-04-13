@@ -14,54 +14,59 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "Home Page")
 }
 
-func ReadPersons(w http.ResponseWriter, r *http.Request) {
-	var person []models.Person
+func ReadPersonalities(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	var personality []models.Personality
 
-	database.DB.Find(&person)
+	database.DB.Find(&personality)
 
-	json.NewEncoder(w).Encode(person)
+	json.NewEncoder(w).Encode(personality)
 }
 
-func ReadPersonById(w http.ResponseWriter, r *http.Request) {
+func ReadPersonalityById(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	vars := mux.Vars(r)
 	id := vars["id"]
-	var person models.Person
+	var personality models.Personality
 
-	database.DB.First(&person, id)
+	database.DB.First(&personality, id)
 
-	json.NewEncoder(w).Encode(person)
+	json.NewEncoder(w).Encode(personality)
 }
 
-func CreatePerson(w http.ResponseWriter, r *http.Request) {
-	var person models.Person
+func CreatePersonality(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	var personality models.Personality
 
-	json.NewDecoder(r.Body).Decode(&person)
+	json.NewDecoder(r.Body).Decode(&personality)
 
-	database.DB.Create(&person)
+	database.DB.Create(&personality)
 
-	json.NewEncoder(w).Encode(person)
+	json.NewEncoder(w).Encode(personality)
 }
 
-func DeletePerson(w http.ResponseWriter, r *http.Request) {
+func DeletePersonality(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	vars := mux.Vars(r)
 	id := vars["id"]
-	var person models.Person
+	var personality models.Personality
 
-	database.DB.Delete(&person, id)
+	database.DB.Delete(&personality, id)
 
-	json.NewEncoder(w).Encode(person)
+	json.NewEncoder(w).Encode(personality)
 }
 
-func UpdatePerson(w http.ResponseWriter, r *http.Request) {
+func UpdatePersonality(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	vars := mux.Vars(r)
 	id := vars["id"]
-	var person models.Person
+	var personality models.Personality
 
-	database.DB.First(&person, id)
+	database.DB.First(&personality, id)
 
-	json.NewDecoder(r.Body).Decode(&person)
+	json.NewDecoder(r.Body).Decode(&personality)
 
-	database.DB.Save(&person)
+	database.DB.Save(&personality)
 
-	json.NewEncoder(w).Encode(person)
+	json.NewEncoder(w).Encode(personality)
 }
