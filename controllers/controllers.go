@@ -15,7 +15,6 @@ func Home(w http.ResponseWriter, r *http.Request) {
 }
 
 func ReadPersonalities(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
 	var personality []models.Personality
 
 	database.DB.Find(&personality)
@@ -24,7 +23,6 @@ func ReadPersonalities(w http.ResponseWriter, r *http.Request) {
 }
 
 func ReadPersonalityById(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
 	vars := mux.Vars(r)
 	id := vars["id"]
 	var personality models.Personality
@@ -35,7 +33,6 @@ func ReadPersonalityById(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreatePersonality(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
 	var personality models.Personality
 
 	json.NewDecoder(r.Body).Decode(&personality)
@@ -46,7 +43,6 @@ func CreatePersonality(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeletePersonality(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
 	vars := mux.Vars(r)
 	id := vars["id"]
 	var personality models.Personality
@@ -57,7 +53,6 @@ func DeletePersonality(w http.ResponseWriter, r *http.Request) {
 }
 
 func UpdatePersonality(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
 	vars := mux.Vars(r)
 	id := vars["id"]
 	var personality models.Personality
